@@ -69,7 +69,7 @@ if password:
 
 
 def generate_password(length):
-    if length < 4:
+    if length < 8:
         return "Password too short!"
     # Character pools
     letters = string.ascii_letters
@@ -85,7 +85,7 @@ def generate_password(length):
     ]
 
     # Fill the rest
-    password += [random.choice(all_chars) for i in range(length - 4)]
+    password += [random.choice(all_chars) for i in range(length - 8)]
     random.shuffle(password)
 
     return ''.join(password)
