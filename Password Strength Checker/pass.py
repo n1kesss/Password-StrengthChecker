@@ -69,32 +69,11 @@ if password:
 
 
 def generate_password(length):
-    if length < 8:
-        return "Password too short!"
-    # Character pools
-    letters = string.ascii_letters
-    digits = string.digits
-    special = "!@#$%"
-    all_chars = letters + digits + special
+    characters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%^&*()_-+="
+    return "" .join(random.choice(characters) for i in range(length))
 
-    # Guarantee at least one of each type
-    password = [
-        random.choice(letters),
-        random.choice(digits),
-        random.choice(special)
-    ]
 
-    # Fill the rest
-    password += [random.choice(all_chars) for i in range(length - 8)]
-    random.shuffle(password)
-
-    return ''.join(password)
-
-password_length = st.number_input(
-    "Enter the length of your password, and we’ll generate something better than your ‘masterpiece’ 🔥💻",
-    min_value=8, max_value=20, value=12
-)
-
+password_length = st.number_input("Enter the length of your password, and we’ll generate something better than your ‘masterpiece’ 🔥💻", min_value=8, max_value=20, value=8)
 if st.button('Brace yourself'):
     password = generate_password(password_length)
     st.success(f'🔑 Here’s your new password: {password}')
