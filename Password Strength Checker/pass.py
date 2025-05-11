@@ -70,15 +70,14 @@ if password:
 def generate_password(length=12):
 
     password = [
-        random.choice(string.ascii_lowercase),
-        random.choice(string.ascii_uppercase),
+        random.choice(string.ascii_letters),
         random.choice(string.digits),
         random.choice("!@#$%^&*()_-+=")
     ]
 
     # Fill the rest of the password
     all_chars = string.ascii_letters + string.digits + "!@#$%^&*()_-+="
-    password += [random.choice(all_chars) for _ in range(length - 4)]
+    password += [random.choice(all_chars) for _ in range(length - 3)]
 
     random.shuffle(password)
     return ''.join(password)
