@@ -64,18 +64,29 @@ if password:
         st.markdown("## Improvement Suggestions")
         for tip in feedback:
             st.write(tip)
-    
 
+#password generator
 
+def generate_password(length=12):
 
-def generate_password(length):
-    characters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%^&*()_-+="
-    return "" .join(random.choice(characters) for i in range(length))
+    password = [
+        random.choice(string.ascii_lowercase),
+        random.choice(string.ascii_uppercase),
+        random.choice(string.digits),
+        random.choice("!@#$%^&*()_-+=")
+    ]
 
+    # Fill the rest of the password
+    all_chars = string.ascii_letters + string.digits + "!@#$%^&*()_-+="
+    password += [random.choice(all_chars) for _ in range(length - 4)]
 
-password_length = st.number_input("Enter the length of your password, and we’ll generate something better than your ‘masterpiece’ 🔥💻", min_value=8, max_value=20, value=8)
-if st.button('Brace yourself'):
-    password = generate_password(password_length)
-    st.success(f'🔑 Here’s your new password: {password}')
+    random.shuffle(password)
+    return ''.join(password)
+
+st.title("🔐 Strong Password Generator")
+
+if st.button("Brace yourself"):
+    password = generate_password()
+    st.success(f"🔑 Here’s your new password: {password}")
 
 
