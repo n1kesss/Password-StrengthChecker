@@ -47,10 +47,10 @@ if password:
 
     #to check characters
 
-    if re.search(r'[!@#$%]',password):
+    if re.search(r'[!@#$%^&*]',password):
         score += 1 
     else:
-        feedback.append("❌ Your password is as bland as boiled rice. Throw in some @#$%!")
+        feedback.append("❌ Your password is as bland as boiled rice. Throw in some !@#$%^&*")
 
 #check the strength
     if score == 4:
@@ -72,11 +72,11 @@ def generate_password(length=12):
     password = [
         random.choice(string.ascii_letters),
         random.choice(string.digits),
-        random.choice("!@#$%^&*()_-+=")
+        random.choice("!@#$%^&*")
     ]
 
     # Fill the rest of the password
-    all_chars = string.ascii_letters + string.digits + "!@#$%^&*()_-+="
+    all_chars = string.ascii_letters + string.digits + "!@#$%^&*"
     password += [random.choice(all_chars) for _ in range(length - 3)]
 
     random.shuffle(password)
